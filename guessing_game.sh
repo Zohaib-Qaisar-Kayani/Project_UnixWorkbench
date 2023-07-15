@@ -1,26 +1,27 @@
-echo "Welcome to Guessing game!!!"
-echo "Instructions: You need to guess how many files are in the current directory until you guess the correct answer."
-echo "Goog luck!!!"
- 
+echo "Welcome to the Guessing Game!"
+echo "Instructions: Guess the number of files in the current directory."
+echo "Good luck!"
+
 function ask {
   echo "How many files are in the current directory?"
   read guess 
-## The Command ls-l | wc -l gives one more than the number of files.
+  # The command ls -l | wc -l gives one more than the number of files.
   number_of_files=$(ls -1 | wc -l)
 }
 
 ask
 while [[ $guess -ne $number_of_files ]]
 do 
-  if [[ $guess -ge $number_of_files ]] 
-  then
+  if [[ $guess -ge $number_of_files ]]; then
     echo "Try a smaller number."
-  else [[ $guess -le $number_of_files ]]
-    echo "Try a bigger number." 
+  else
+    echo "Try a larger number." 
   fi
   ask
 done
 
-echo "Congratulation you guess right!!!"
-echo "There are $number_of_files files in the current directory, which are: "
-echo "--------------" && ls
+echo "Congratulations! You guessed it right!!!"
+echo "The number of files in the current directory is: $number_of_files"
+echo "Here is the list of files:"
+echo "--------------"
+ls
